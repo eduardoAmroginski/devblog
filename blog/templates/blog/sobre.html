@@ -1,14 +1,62 @@
 {% extends 'blog/base.html' %}
+{% load static %}
 
 {% block content %}
+<div class="container py-5">
+    <div class="row align-items-center justify-content-between">
+        
+        <!-- Coluna de Texto (Esquerda) -->
+        <div class="col-lg-7 mb-5 mb-lg-0 pe-lg-5">
+            
+            <!-- Título com tags simulando código HTML/XML -->
+            <h1 class="display-4 fw-bold text-dark mb-4">
+                <span class="text-primary fs-3">&lt;</span> Sobre o Projeto <span class="text-primary fs-3">/&gt;</span>
+            </h1>
+            
+            <p class="lead text-secondary mb-4" style="text-align: justify;">
+                O <strong>DevBlog</strong> é o resultado prático de uma imersão completa na <strong>Trilha de Python do Senac Tech</strong>.
+            </p>
+            
+            <p class="text-dark mb-5" style="text-align: justify;">
+                Construído a partir do zero durante uma jornada de 276 horas, este sistema não é apenas um repositório de aulas, mas um reflexo da nossa evolução. Aplicamos conceitos sólidos de back-end com Django e front-end com Bootstrap para dar vida a uma aplicação web real e dinâmica.
+            </p>
 
-    <h2>Sobre</h2>
-    <p>
-        Este projeto foi criado como pratica das aulas da Trilha de Python do Senac Tech.
-    </p>
+            <!-- Bloco simulando um Terminal / Console (Padrão Escuro) -->
+            <div class="bg-dark text-light p-4 rounded-3 shadow-sm mb-5 font-monospace">
+                <div class="text-success mb-2">➜  ~ python manage.py runserver</div>
+                <div class="text-white-50 small mb-1">Watching for file changes with StatReloader</div>
+                <div class="text-white-50 small mb-1">Starting development server at http://127.0.0.1:8000/</div>
+                <div class="text-info mt-3 fw-bold">> Status: Evolução Contínua_</div>
+            </div>
 
-    <p>
-        Projeto desenvolvido em conjunto com a turma, seguindo os exemplos de cada slide, com evolução continua.
-    </p>
+            <!-- Botão de Ação -->
+            <a href="{% url 'home' %}" class="btn btn-dark px-5 py-3 rounded-pill fw-semibold shadow-sm text-uppercase" style="letter-spacing: 1px;">
+                <kbd class="bg-transparent text-white border-0 p-0 me-2 fs-6">cd</kbd> /home
+            </a>
+            
+        </div>
 
+        <!-- Coluna da Imagem e Tecnologias (Direita) -->
+        <div class="col-lg-4 text-center">
+            
+            <!-- Imagem principal sem bordas de card -->
+            <div class="mb-5 position-relative">
+                <img src="{% static 'blog/images/logo.png' %}" class="img-fluid rounded-4 shadow-lg border border-3 border-dark" alt="Logo DevBlog" style="max-height: 250px;">
+            </div>
+            
+            <!-- Stack de Tecnologias -->
+            <h6 class="text-muted mb-4 fw-bold text-uppercase" style="letter-spacing: 2px;">Tech Stack Principal</h6>
+            
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <span class="badge rounded-pill bg-dark py-2 px-3 shadow-sm border border-secondary">Python</span>
+                <span class="badge rounded-pill bg-success py-2 px-3 shadow-sm border border-secondary">Django</span>
+                <span class="badge rounded-pill bg-primary py-2 px-3 shadow-sm border border-secondary">Bootstrap 5</span>
+                <span class="badge rounded-pill bg-info text-dark py-2 px-3 shadow-sm border border-secondary">PostgreSQL</span>
+                <span class="badge rounded-pill bg-secondary py-2 px-3 shadow-sm border border-secondary">SQLite</span>
+            </div>
+            
+        </div>
+
+    </div>
+</div>
 {% endblock %}
