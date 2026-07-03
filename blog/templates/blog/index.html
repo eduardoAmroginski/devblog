@@ -14,7 +14,13 @@
             <div class="card-body">
                 <h3 class="card-title text-success">{{ artigo.titulo }}</h3>
                 <h6 class="card-subtitle mb-2 text-muted">Categoria: {{ artigo.categoria.nome}} | Autor: {{ artigo.autor}}</h6>
-                <p class="card-text">{{ artigo.conteudo}}</p>
+                <p class="card-text">
+                    {{ artigo.conteudo|truncatechars:100}}
+                    <a href="{% url 'detalhe_artigo' artigo.id %}" class="btn btn-success btn-sm">
+                        Ler mais
+                    </a>
+                </p>
+                
                 <p class="card-text">
                     <small class="text-muted"> Publicado em: {{ artigo.data_publicacao }}</small>
                 </p>
