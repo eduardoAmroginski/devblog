@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Artigo, Categoria
 from .forms import ContatoForm
 
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .serializers import ArtigoSerializer
+
 def home(request):
 
     categoria_selecionada = request.GET.get('categoria')
@@ -64,3 +68,15 @@ def fale_conosco(request):
     }
 
     return render(request, 'blog/contato.html', contexto)
+
+
+
+# API REST #
+
+@api_view(['GET'])
+def api_listar_artigos(request):
+    artigo = Artigo.objects.all()
+
+    serializer = ArtigoSerializer(artigo, many=True)
+
+    return Response(serializer.data)
