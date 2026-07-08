@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
+
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+
 from .models import Artigo, Categoria
 from .forms import ContatoForm
-
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 from .serializers import ArtigoSerializer
 
 def home(request):
@@ -80,3 +82,16 @@ def api_listar_artigos(request):
     serializer = ArtigoSerializer(artigo, many=True)
 
     return Response(serializer.data)
+
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def api_criar_artigo(request):
+    serializer = ArtigoSerializer(data=request.data)
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=201)
+    
+    return Response(serializer.errors, status=400)
+
