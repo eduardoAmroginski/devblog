@@ -4,7 +4,11 @@
 
 {% block content %}
 
-    {% if categoria_selecionada %}
+    {% if busca and categoria_selecionada %}
+        <h2>Buscando por "{{ busca }}" em {{ categoria_selecionada }}</h2>
+    {% elif busca %}
+        <h2>Resultados para "{{ busca }}"</h2>
+    {% elif categoria_selecionada %}
         <h2>Notícias sobre {{ categoria_selecionada }}</h2>
     {% else %}
         <h2>Últimas Notícias</h2>

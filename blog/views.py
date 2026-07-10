@@ -13,13 +13,16 @@ from .serializers import ArtigoSerializer
 def home(request):
 
     categoria_selecionada = request.GET.get('categoria')
-
     categorias = Categoria.objects.all().order_by('nome')
+    busca = request.GET.get('q')
     
     if categoria_selecionada:
         noticias = Artigo.objects.filter(categoria__nome__icontains=categoria_selecionada).order_by('-id')
     else:
         noticias = Artigo.objects.all().order_by('-id')
+
+    if busca:
+        noticias = noticias.filter(titulo__icontains=busca)
 
     paginator = Paginator(noticias, 5)
 
@@ -30,7 +33,8 @@ def home(request):
     contexto = {
         'lista_artigos': page_obj,
         'lista_categorias': categorias,
-        'categoria_selecionada': categoria_selecionada
+        'categoria_selecionada': categoria_selecionada,
+        'busca': busca
     }
     
     return render(request, "blog/index.html", contexto)
