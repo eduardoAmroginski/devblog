@@ -32,4 +32,21 @@
         <p>Nenhuma notícia publicada ainda.</p>
     {% endfor %}
 
+    <div class="pagination justify-content-center mt-4">
+        {% if lista_artigos.has_previous %}
+            <a href="?page=1" class="btn btn-outline-primary btn-sm mx-1">&laquo; Primeira</a>
+            <a href="?page={{ lista_artigos.previous_page_number }}" class="btn btn-outline-primary btn-sm mx-1">Anterior</a>
+        {% endif %}
+
+        <span class="current fw-bold mx-3 mt-1">
+            Página {{ lista_artigos.number }} de {{ lista_artigos.paginator.num_pages }}.
+        </span>
+
+        {% if lista_artigos.has_next %}
+            <a href="?page={{ lista_artigos.next_page_number }}" class="btn btn-outline-primary btn-sm mx-1">Próxima</a>
+            <a href="?page={{ lista_artigos.paginator.num_pages }}" class="btn btn-outline-primary btn-sm mx-1">Última &raquo;</a>
+        {% endif %}
+
+    </div>
+        
 {% endblock %}
