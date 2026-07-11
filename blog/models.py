@@ -14,6 +14,10 @@ class Artigo(models.Model):
 
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
 
+    imagem = models.ImageField(upload_to='artigos/', blank=True, null=True)
+
+    imagem_capa = models.ImageField(upload_to='artigos/', blank=True, null=True)
+
     autor = models.CharField(max_length=50, default="Admin")
 
     def __str__(self):

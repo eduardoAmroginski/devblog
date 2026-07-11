@@ -15,6 +15,10 @@
                 <strong>Categoria: </strong> {{ artigo.categoria.nome }}
             </p>
 
+            {% if artigo.imagem %}
+                    <img src="{{ artigo.imagem.url }}" class="card-img mt-2 mb-5">
+            {% endif %}
+
             <p style="font-size: 1.1rem; line-height: 1.8;">
                 {{ artigo.conteudo }}
             </p>

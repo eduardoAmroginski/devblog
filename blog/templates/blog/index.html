@@ -17,6 +17,9 @@
     {% for artigo in lista_artigos %}
         <div class="card mb-3 shadow-sm">
             <div class="card-body">
+                {% if artigo.imagem_capa %}
+                    <img src="{{ artigo.imagem_capa.url }}" class="card-img-top mb-3">
+                {% endif %}
                 <h3 class="card-title text-success">{{ artigo.titulo }}</h3>
                 <h6 class="card-subtitle mb-2 text-muted">Categoria: {{ artigo.categoria.nome}} | Autor: {{ artigo.autor}}</h6>
                 <p class="card-text">
